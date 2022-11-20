@@ -1,0 +1,114 @@
+<html>
+	<head>
+	<title>Loan Application</title>
+	
+	<script language="javascript" type="text/javascript">
+	function passItem(){
+	var name=document.getElementById("FirstName").value;
+	localStorage.setItem("fname",name);
+	
+	var mail=document.getElementById("Email").value;
+	localStorage.setItem("email",mail);
+	return flase;
+	}
+	</script>
+<style>
+body {
+	background-color : skyblue;
+	font-family: Verdana;
+	text-align: center; }
+form {
+	background-color: white;
+	max-width: 500px;
+	padding: 50px 50px;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.5); }
+.form-control { 
+	text-align: left;
+	margin-bottom: 25px; }
+
+.form-control {
+	display: block;
+	margin-bottom 10px; }
+
+.form-control input {
+	border: 1px solid black;
+	border-radius: 2px;
+	font-family: inherit;
+	padding: 10px;
+	display: block;
+	width: 70%; }
+button {
+	background-color:lightgreen;
+	border: 1px solid black;
+	border-radius: 2px;
+	font-family: inherit;
+	font-size: 21px;
+	display: block;
+	hight: 100%;
+	width: 80%;
+	margin-top: 20px;
+	margin-bottom: 20px; 
+	cursor: poniter;}
+			</style>
+			</head>
+
+<body>
+<h1><i> Personal Info </i></h1>
+
+<center>
+<form id="iform" action="confirm.html"  method="get">
+	<div class="form-control">
+		
+		<input type="text" id="FirstName" placeholder="Enter First Name" required/><br>
+	</div>
+	<div class="form-control">
+		
+		<input type="text" id="LastName" placeholder="Enter Last Name" required/><br>
+	</div>
+	<div class="form-control">
+	
+		<input type="Email" id="Email" size="30"  placeholder="Enetr Mail Id" required/><br>
+	</div>
+	<div class="form-control">
+		
+		<input type="PAN No." id="PAN_No." placeholder="Enetr Pancard No. " required/><br>
+	</div>
+	<div class="form-control">
+		
+		<input type="Number" id="LoanAmount" placeholder="Enetr Loan Amount" required/>
+		<p><i><span id="words"></span></i></p><br>
+<script>
+var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+
+function inWords (num) {
+    if ((num = num.toString()).length > 9) return 'overflow';
+    n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!n) return; var str = '';
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+    return str;
+}
+
+document.getElementById('LoanAmount').onkeyup = function () {
+    document.getElementById('words').innerHTML = inWords(document.getElementById('LoanAmount').value);
+} 
+</script>
+	</div>
+
+	<button onclick="passItem()" > Submit </button>
+	
+	<script>
+	var val = Math.floor(1000 + Math.random() * 9000);
+	console.log(val); 
+	
+	document.getElementById("Email").innerHTML = val;
+	</script>
+	
+
+</form></center>
+</body>
+</html>

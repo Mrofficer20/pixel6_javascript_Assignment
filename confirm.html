@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>Confirmation</title>
+<link rel="stylesheet" href="index.html">
+<style>
+	body {
+	background-color : lightgreen;
+	font-family: Verdana;
+	text-align: center; }
+
+	form {
+	background-color: white;
+	max-width: 55%;
+	padding: 3px 3px;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.5); }
+
+	.container {
+ 	display: flex;
+ 	flex-flow: column;
+  	height: 100%;
+	align-items: space-around;
+	justify-content: center; }
+	
+	.userInput {
+	display: flex;
+  	justify-content: center; }
+	
+	input {
+  	margin: 10px;
+  	height: 40px;
+  	width: 70px;
+  	border: 1px solid white;
+  	border-radius: 5px;
+  	text-align: center;
+  	font-family: arimo;
+  	font-size: 1.2rem;
+  	background: grey;
+	cursor: pointer}
+
+	
+
+	button {
+	background-color: skyblue;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-family: inherit;
+	font-size: 21px;
+	display: block;
+	width: 30%;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	
+</style>
+</head>
+<body>
+<center> 
+<form method="get">  
+<div class="container">
+	<h4>
+		<p>
+		Dear <span id='fn'></span>
+		<script>
+document.getElementById('fn').innerHTML=localStorage.getItem('fname');
+		</script>,
+		Thank you for your inquiry. A 4 digit verification number has been sent to your email: <a href=""><span id='eml'></span></a>
+		<script>
+document.getElementById('eml').innerHTML=localStorage.getItem('email');
+		</script>,please enter it in the following box and submit for confirmation:
+		</p>
+	</h4>
+	<div class="userInput">
+ 	<input type="number"  class="otp" id=''otp1''  maxlength="1"/>
+	<input type="number"  class="otp" id=''otp2''  maxlength="1"/>
+	<input type="number"  class="otp" id=''otp3''  maxlength="1"/>
+	<input type="number"  class="otp" id=''otp4''  maxlength="1"/>
+
+	</div>
+	<center>
+	<button type="button" onclick="myFunction()">Validate !</button>
+
+	</center>
+</div></form></center>
+
+	
+	<script>
+	
+	var digits = '0123';
+   	var OTP = '';
+	var attempt_counter = 3;
+
+	function generateOTP() {                                                            
+		if( OTP != "" ) {
+			return;
+		}
+
+  	  	for (let i = 0; i < 4; i++ ) {
+        			OTP += digits[Math.floor(Math.random() * 4)]; 
+		}
+
+		return OTP;
+	}
+
+	console.log( "OTP of 4 digits "  + generateOTP());
+
+	
+	function myFunction() {
+		var otp_fields = document.getElementsByClassName('otp');
+		user_value = "";
+
+		for ( let i =0; i<4; i++ ) { 
+			user_value += otp_fields[i].value;			
+		}
+
+		if( user_value == OTP && attempt_counter) {
+			alert("Validate Successful!");  
+		}
+		else if ( !attempt_counter ) {
+			alert("More than 3 attempts");
+		}		
+		else {
+			attempt_counter-=1;				
+			alert("Validation Failed");
+		}	
+	}
+	
+</script>
+</body>
+</html>
